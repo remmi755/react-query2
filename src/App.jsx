@@ -1,6 +1,3 @@
-// import { useState } from 'react'
-
-import './App.css'
 import { Button, Container, Form } from 'react-bootstrap'
 import ProductsTable from './components/ProductsTable.jsx'
 import axios from 'axios'
@@ -27,18 +24,6 @@ function App() {
         onSuccess: () => queryClient.invalidateQueries(['products']),
     })
 
-    // const mutationDelete = useDeleteJob((oldData, id) =>
-    //     oldData.filter((item) => item.id !== id)
-    // )
-
-    // const onDelete = async (id) => {
-    //     try {
-    //         await mutationDelete.mutateAsync(id)
-    //     } catch (e) {
-    //         pushNotification(`Cannot delete the job`)
-    //     }
-    // }
-
     if (isLoading) {
         return <h3>Идет загрузка...</h3>
     }
@@ -52,7 +37,6 @@ function App() {
 
         const formData = new FormData(event.target)
         const fields = Object.fromEntries(formData)
-        console.log(fields)
         mutation.mutate(fields)
         event.target.reset()
     }
@@ -78,7 +62,6 @@ function App() {
                         placeholder="Цена"
                     />
                 </Form.Group>
-
                 <Button variant="primary" type="submit">
                     Добавить
                 </Button>

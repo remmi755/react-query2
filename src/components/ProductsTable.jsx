@@ -1,16 +1,13 @@
-import Table from 'react-bootstrap/Table'
 import axios from 'axios'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { useMutation, useQueryClient } from 'react-query'
-
-// eslint-disable-next-line react/prop-types
 
 async function deleteProduct(id) {
     return await axios.delete(
         `https://63fa69b9897af748dccebef2.mockapi.io/items/${id}`
     )
 }
-// eslint-disable-next-line react/prop-types
+
 const ProductsTable = ({ data }) => {
     const queryClient = useQueryClient()
     const mutation = useMutation((id) => deleteProduct(id), {
@@ -18,8 +15,9 @@ const ProductsTable = ({ data }) => {
     })
 
     async function deleteProductItem(id) {
-        mutation.mutate(id)
+        await mutation.mutate(id)
     }
+
     return (
         <Table striped bordered hover>
             <thead>
@@ -31,7 +29,6 @@ const ProductsTable = ({ data }) => {
             </thead>
             <tbody>
                 {data &&
-                    // eslint-disable-next-line react/prop-types
                     data.map((obj) => (
                         <tr
                             key={obj.id}

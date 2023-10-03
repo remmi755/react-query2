@@ -28,6 +28,6 @@
     "vite": "^4.4.5"
   },
   "rules": {
-    "react/prop-types": "off"
+    "react/prop-types": 0
   }
 }
