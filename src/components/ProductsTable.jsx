@@ -14,8 +14,8 @@ const ProductsTable = ({ data }) => {
         onSuccess: () => queryClient.invalidateQueries(['products']),
     })
 
-    async function deleteProductItem(id) {
-        await mutation.mutate(id)
+    const deleteProductItem = (id) => {
+        mutation.mutate(id)
     }
 
     return (
@@ -30,15 +30,17 @@ const ProductsTable = ({ data }) => {
             <tbody>
                 {data &&
                     data.map((obj) => (
-                        <tr
-                            key={obj.id}
-                            onClick={() => deleteProductItem(obj.id)}
-                        >
+                        <tr key={obj.id}>
                             <td>{obj.id}</td>
                             <td>{obj.name}</td>
                             <td>{obj.price}</td>
                             <td>
-                                <Button variant="primary">Delete</Button>
+                                <Button
+                                    variant="primary"
+                                    onClick={() => deleteProductItem(obj.id)}
+                                >
+                                    Delete
+                                </Button>
                             </td>
                         </tr>
                     ))}
